@@ -5,7 +5,9 @@ const path = require("path");
 
 exports.ensureDirectoryExists = async (dirPath) => {
     try {
-        await fs.mkdir(dirPath, { recursive: true, mode: 0o777 });
+        await fs.mkdir(dirPath, { recursive: true });
+        // Explicitly set permissions after creation
+        await fs.chmod(dirPath, 0o777);
     } catch (error) {
         console.error(`Error creating folder at ${dirPath}:`, error.message);
     }

@@ -4,7 +4,7 @@ const { HttpException } = require("../../utility/exceptions/httpException");
 const { ensureDirectoryExists } = require("../../utility/fileManage.utility");
 
 const pdfUpload = multer.diskStorage({
-    destination: async function (req, file, cb) {
+   destination: async function (req, file, cb) {
         const user = req?.user;
         const payload = req?.body;
 
@@ -14,7 +14,7 @@ const pdfUpload = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         const ext = path.extname(file.originalname);
-        const fileName = path.parse(file.originalname).name?.replace(" ", "");
+        const fileName = path.parse(file.originalname).name?.replace(/\s+/g, "");
         const uniqueName = `${fileName}_${Date.now()}${ext}`;
         cb(null, uniqueName);
     },
