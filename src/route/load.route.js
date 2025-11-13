@@ -1,7 +1,7 @@
 const express = require("express");
 const loadRoute = express.Router();
 const pdfUploadRoute = require("./pdfUpload/pdfUploadRoute")
-
+const signedPdfRoute = require("./signedPdf/signerPdfRoute")
 
 const defaultRoutes = [
     {
@@ -9,7 +9,10 @@ const defaultRoutes = [
         route: pdfUploadRoute,
        
     }
-    
+    ,{
+        prefix:"/signed",
+        route:signedPdfRoute
+    }
 ];
 
 defaultRoutes.forEach((route) => {
