@@ -39,7 +39,7 @@ exports.list = async(req,res)=>{
 
         
         const results = await PdfUrls.findAll({
-            attributes:["pdf_url","type"],
+            attributes:["pdf_url","type","id"],
             where: whereClause,
             order:[["id","desc"]],
             limit:1
