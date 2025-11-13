@@ -2,13 +2,15 @@
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-    class PdfUrls extends Model {
+    class UserPdfSign extends Model {
         static associate(models) {
             // Define associations here if needed
+            // Example: this.belongsTo(models.PdfUrls, { foreignKey: 'pdf_table_id' });
+            // Example: this.belongsTo(models.User, { foreignKey: 'user_id' });
         }
     }
 
-    PdfUrls.init(
+    UserPdfSign.init(
         {
             id: {
                 allowNull: false,
@@ -16,11 +18,19 @@ module.exports = (sequelize, DataTypes) => {
                 primaryKey: true,
                 type: DataTypes.INTEGER,
             },
-            pdf_url: {
+            user_pdf_url: {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
             type: {
+                type: DataTypes.BIGINT,
+                allowNull: false,
+            },
+            pdf_table_id: {
+                type: DataTypes.BIGINT,
+                allowNull: false,
+            },
+            user_id: {
                 type: DataTypes.BIGINT,
                 allowNull: false,
             },
@@ -42,12 +52,12 @@ module.exports = (sequelize, DataTypes) => {
         },
         {
             sequelize,
-            modelName: 'PdfUrls',
-            tableName: 'pdf_urls',
+            modelName: 'UserPdfSign',
+            tableName: 'user_pdf_signs',
             underscored: true,
             timestamps: false,
         }
     );
 
-    return PdfUrls;
+    return UserPdfSign;
 };
