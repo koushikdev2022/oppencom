@@ -5,12 +5,12 @@ const {PdfUrls,UserPdfSign} =  require("../../../../models")
 exports.upload = async(req,res)=>{
     try{
             const request = req?.file
+            console.log(request)
             const uploadUrl = `uploads/pdfmain/${request?.filename}`
             const create = await PdfUrls.create({
                   pdf_url:uploadUrl,
                   type:req?.body?.type,
                   status:1
-
             })
             return res.status(200).json({
                 message:"pdf created",
