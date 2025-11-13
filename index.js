@@ -7,7 +7,7 @@ dotEnv.config();
 const cors = require("cors");
 const morgan = require('morgan');
 const sequelize = require("./src/config/db");
-
+const loadRoute = require("./src/route/load.route")
 
 
 const app = express();
@@ -19,6 +19,8 @@ app.use(morgan("dev"));
 app.use(express.urlencoded({ limit: "100mb", extended: false }));
 app.use(express.json({ limit: "100mb" }));
 app.use(express.static(join(__dirname, "/public/")));
+app.use("/api",loadRoute);
+
 
 sequelize.authenticate()
     .then(() => console.warn("MY-SQL connected successfully."))
