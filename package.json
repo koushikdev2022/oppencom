@@ -1,0 +1,29 @@
+{
+  "name": "oppencom",
+  "version": "1.0.0",
+  "description": "good",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "dotenvx run -- nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koushikdev2022/oppencom.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/koushikdev2022/oppencom/issues"
+  },
+  "homepage": "https://github.com/koushikdev2022/oppencom#readme",
+  "dependencies": {
+    "@dotenvx/dotenvx": "^1.51.1",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "morgan": "^1.10.1",
+    "mysql2": "^3.15.3",
+    "mysqli": "^3.1.4",
+    "nodemon": "^3.1.11",
+    "sequelize": "^6.37.7"
+  }
+}

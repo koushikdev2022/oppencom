@@ -1,0 +1,19 @@
+# yarn v2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+.node_modules
+/.vscode
+/.idea
+public/uploads/
+index.html
+public/assets/index.html
+public/moodmaster
+package-lock.json
+node_modules
+env
+.env
+.env.local
+/logs
