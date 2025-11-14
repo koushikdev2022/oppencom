@@ -27,7 +27,7 @@ exports.save = async (req, res) => {
             user_id: user,
             status: 1
         });
-        const pathTemplate = path.resolve(__dirname,"../../../template/pdf.ejs")
+        const pathTemplate = path.resolve(__dirname,"../../../../template/pdf.ejs")
         const ejsRender = ejs.renderFile(pathTemplate,{name:"hellow"})
         let pdfMsg = {
             from: `"${process.env.SMTP_SENDER_NAME}" <${process.env.SMTP_SENDER_MAIL}>`,
