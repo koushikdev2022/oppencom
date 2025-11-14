@@ -1,7 +1,7 @@
 const { mailConfig } = require("../../../../config/mailConfig");
 const { PdfUrls, UserPdfSign } = require("../../../../models");
 const path = require("path");
-
+const ejs = require("ejs")
 
 exports.save = async (req, res) => {
     try {
