@@ -8,7 +8,7 @@ const { ensureDirectoryExists } = require("../../../utility/fileManage.utility")
 const signedPdf = multer.diskStorage({
     destination: async function(req,res,cb){
         // const user = req?.user?.id
-        const user = 2
+        req?.body?.id || 2
         const payload = req?.payload
         const imagePath = path.resolve(__dirname,`../../../../public/uploads/usersignedpdf/${user}`)
         await ensureDirectoryExists(imagePath);
