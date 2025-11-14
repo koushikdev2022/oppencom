@@ -27,13 +27,16 @@ exports.save = async (req, res) => {
             user_id: user,
             status: 1
         });
-        const pathTemplate = path.resolve(__dirname,"../../../../template/pdf.ejs")
-        const ejsRender = ejs.renderFile(pathTemplate,{name:"hellow"})
+        
+        // Fix: Add await to resolve the Promise
+        const pathTemplate = path.resolve(__dirname, "../../../../template/pdf.ejs");
+        const ejsRender = await ejs.renderFile(pathTemplate, {name: "hello"});
+        
         let pdfMsg = {
             from: `"${process.env.SMTP_SENDER_NAME}" <${process.env.SMTP_SENDER_MAIL}>`,
             to: "testsmtp@yopmail.com",
             subject: `HiringEye one time password`,
-            html: ejsRender, 
+            html: ejsRender, // Now this is a string, not a Promise
             attachments: [
                 {
                     filename: request.originalname || request.filename,
@@ -42,8 +45,10 @@ exports.save = async (req, res) => {
                 }
             ]
         };
-        let transportConfig = await mailConfig()
-        let messageResponse = await transportConfig.sendMail(pdfMsg)
+        
+        let transportConfig = await mailConfig();
+        let messageResponse = await transportConfig.sendMail(pdfMsg);
+        
         return res.status(201).json({
             message: "PDF saved successfully",
             status: true,
@@ -64,3 +69,4 @@ exports.save = async (req, res) => {
         });
     }
 };
+
