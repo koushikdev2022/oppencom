@@ -15,10 +15,28 @@ exports.save = async (req, res) => {
             });
         }
 
-        const user = req?.body?.id || 2;
+          const user = req?.body?.id;
+        if(!user){
+            return res.status(422).json({
+                message:"user_id as id required",
+                status:false,
+                status_code:422
+            })
+        }
         console.log('File info:', request);
         
         const uploadUrl = `uploads/usersignedpdf/${user}/${request?.filename}`;
+        const wholeSalerData = await Wholesaler.findByPk(user)
+        if(!wholeSalerData){
+            return res.status(400).json({
+                message:"user not found",
+                status:false,
+                status_code:400
+            })
+        }
+        const email = wholeSalerData?.email
+        
+        
         
         const createPdfSign = await UserPdfSign.create({
             user_pdf_url: uploadUrl,
@@ -34,7 +52,7 @@ exports.save = async (req, res) => {
         
         let pdfMsg = {
             from: `"${process.env.SMTP_SENDER_NAME}" <${process.env.SMTP_SENDER_MAIL}>`,
-            to: "testsmtp@yopmail.com",
+            to: email,
             subject: `HiringEye one time password`,
             html: ejsRender, // Now this is a string, not a Promise
             attachments: [
