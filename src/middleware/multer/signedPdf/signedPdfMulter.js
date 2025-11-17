@@ -3,8 +3,6 @@ const multer = require("multer");
 const { HttpException } = require("../../../utility/exceptions/httpException");
 const { ensureDirectoryExists } = require("../../../utility/fileManage.utility");
 
-
-
 const signedPdf = multer.diskStorage({
     destination: async function(req,res,cb){
         // const user = req?.user?.id
