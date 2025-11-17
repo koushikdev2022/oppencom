@@ -1,5 +1,5 @@
 const { mailConfig } = require("../../../../config/mailConfig");
-const { PdfUrls, UserPdfSign } = require("../../../../models");
+const { PdfUrls, UserPdfSign,Wholesaler } = require("../../../../models");
 const path = require("path");
 const ejs = require("ejs")
 
